@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{C6A4FC40-88B4-4E6E-BF44-FEEA64B02A2C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>repro</RootNamespace>
+    <AssemblyName>repro</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <Externalconsole>true</Externalconsole>
+    <Optimize>true</Optimize>
+    <DefineConstants>
+    </DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <Externalconsole>true</Externalconsole>
+    <Optimize>true</Optimize>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>
+    </DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <FSharpSdksLocation Condition="Exists('\Library\Frameworks\Mono.framework\Versions\Current\lib\mono\Microsoft SDKs\F#')">/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/Microsoft SDKs/F#</FSharpSdksLocation>
+    <FSharpSdksLocation Condition="Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#')">$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#</FSharpSdksLocation>
+    <FSharpSdkVer Condition="Exists('$(FSharpSdksLocation)\3.0\Framework\v4.0\Microsoft.FSharp.Targets')">3.0</FSharpSdkVer>
+    <FSharpSdkVer Condition="Exists('$(FSharpSdksLocation)\3.1\Framework\v4.0\Microsoft.FSharp.Targets')">3.1</FSharpSdkVer>
+    <FSharpTargetsPath>$(FSharpSdksLocation)\$(FSharpSdkVer)\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargetsPath>
+  </PropertyGroup>
+  <Import Project="$(FSharpTargetsPath)" />
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Data\sqlQueries.fs" />
+    <Compile Include="Program.fs" />
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="SqlServerTypes\x64\SqlServerSpatial110.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="FSharp.Data.SqlClient">
+      <HintPath>..\packages\FSharp.Data.SqlClient.1.7.2\lib\net40\FSharp.Data.SqlClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnionArgParser">
+      <HintPath>..\packages\UnionArgParser.0.8.7\lib\net40\UnionArgParser.dll</HintPath>
+    </Reference>
+    <Reference Include="FSharp.Data">
+      <HintPath>..\packages\FSharp.Data.2.2.3\lib\net40\FSharp.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="HttpClient">
+      <HintPath>..\packages\Http.fs.1.5.1\lib\net40\HttpClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
